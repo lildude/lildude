@@ -1,206 +1,274 @@
-<svg fill="none" viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
-  <foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>
-        @keyframes hi  {
-            0% { transform: rotate( 0.0deg) }
-           10% { transform: rotate(14.0deg) }
-           20% { transform: rotate(-8.0deg) }
-           30% { transform: rotate(14.0deg) }
-           40% { transform: rotate(-4.0deg) }
-           50% { transform: rotate(10.0deg) }
-           60% { transform: rotate( 0.0deg) }
-          100% { transform: rotate( 0.0deg) }
-        }
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" role="img" aria-labelledby="title desc">
+  <title id="title">Colin Seymour - @lildude</title>
+  <desc id="desc">An animated, colourful software developer profile banner styled as a terminal window.</desc>
 
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset=".52" stop-color="#11172d"/>
+      <stop offset="1" stop-color="#090d1b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2=".25">
+      <stop offset="0" stop-color="#20e3ff"/>
+      <stop offset=".36" stop-color="#8b5cf6"/>
+      <stop offset=".7" stop-color="#ff4ecd"/>
+      <stop offset="1" stop-color="#ffb84d"/>
+    </linearGradient>
+    <linearGradient id="line-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#20e3ff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#20e3ff"/>
+      <stop offset="1" stop-color="#ff4ecd" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="cyan-glow">
+      <stop offset="0" stop-color="#20e3ff" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#20e3ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pink-glow">
+      <stop offset="0" stop-color="#ff4ecd" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ff4ecd" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#9ddcff" stroke-opacity=".07" stroke-width="1"/>
+      <circle cx="1" cy="1" r=".8" fill="#9ddcff" fill-opacity=".13"/>
+    </pattern>
+    <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="big-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="window-clip">
+      <rect x="7" y="7" width="586" height="286" rx="18"/>
+    </clipPath>
+  </defs>
 
-        @keyframes intro {
-          0%, 75% { transform: translateX(-100vw); }
-          100% { transform: translateX(0); }
-        }
+  <style>
+    text {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
 
-        @keyframes fade {
-          0%, 75% { opacity: 0; }
-          100% { opacity: 1; }
-        }
+    .name {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
 
-        * {
-          margin: 0;
-          padding: 0;
-          color: inherit;
-          text-decoration: none;
-          list-style: none;
-          outline: none;
-          box-sizing: border-box;
-        }
+    .float-cyan {
+      animation: float-cyan 9s ease-in-out infinite alternate;
+    }
 
-        .container {
-          --color-main: #5452ee;
-          --color-primary: #e73c7e;
-          --color-secondary: #23a6d5;
-          --color-tertiary: #ffff;
+    .float-pink {
+      animation: float-pink 11s ease-in-out infinite alternate;
+    }
 
-          background: linear-gradient(-45deg, var(--color-main), var(--color-primary), var(--color-secondary), var(--color-tertiary));
-          background-size: 400% 400%;
-          animation: gradient 15s ease infinite;
+    .spin {
+      animation: spin 18s linear infinite;
+      transform-box: view-box;
+      transform-origin: 486px 153px;
+    }
 
-          width: 100%;
-          height: 300px;
+    .spin-reverse {
+      animation: spin-reverse 13s linear infinite;
+      transform-box: view-box;
+      transform-origin: 486px 153px;
+    }
 
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          color: var(--color-tertiary);
+    .orbit {
+      animation: orbit 6s ease-in-out infinite;
+      transform-box: view-box;
+      transform-origin: 486px 153px;
+    }
 
-          font-family: "Open Sans", sans-serif;
-          text-transform: uppercase;
-        }
+    .cursor {
+      animation: blink 1.05s steps(1, end) infinite;
+    }
 
-        h1 {
-          font-size: 4rem;
-          font-weight: 800;
-          text-align: center;
-        }
-        h1 a {
-          color: white;
-          display: block;
-          text-decoration: none;
-        }
-        h1 a span {
-          overflow: hidden;
-          transition: transform 0.25s cubic-bezier(0.5, 0, 0.25, 1.25);
-          display: block;
-          padding-right: 2px;
-        }
-        h1 a span em {
-          display: block;
-          padding-right: 2px;
-        }
-        h1 a span:nth-child(1) {
-          color: var(--color-tertiary);
-          margin-bottom: 6px;
-          animation: intro 1.5s cubic-bezier(0.5, 0, 0.25, 1.3) -1s 1;
-        }
-        h1 a span:nth-child(1) em {
-          margin-top: 30px;
-          line-height: 0rem;
-          margin-bottom: -10px;
-        }
-        h1 a span:nth-child(2) {
-          color: var(--color-tertiary);
-          margin-bottom: 6px;
-          animation: intro 1.5s cubic-bezier(0.5, 0, 0.25, 1.2) -0.9s 1;
-        }
-        h1 a span:nth-child(2) em {
-          margin-top: -6px;
-          line-height: 1rem;
-        }
-        h1 a span:nth-child(3) {
-          color: var(--color-tertiary);
-          animation: intro 1.5s cubic-bezier(0.5, 0, 0.25, 1.1) -0.8s 1;
-        }
-        h1 a span:nth-child(3) em {
-          margin-top: -36px;
-          line-height: 3rem;
-        }
-        h1 a:hover span,
-        h1 a:focus span {
-          transition: transform 0.125s cubic-bezier(0.5, 0, 0.25, 2.5);
-        }
-        h1 a:hover span:nth-child(1),
-        h1 a:focus span:nth-child(1) {
-          transform: translateX(1vw);
-        }
-        h1 a:hover span:nth-child(3),
-        h1 a:focus span:nth-child(3) {
-          transform: translateX(-1vw);
-        }
+    .scan {
+      animation: scan 7s linear infinite;
+    }
 
-        .items {
-          margin-top: 35px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-        }
-        ul {
-          font-size: 16px;
-          line-height: 26px;
-          font-weight: 700;
-        }
-        ul li {
-          display: flex;
-          letter-spacing: 0.125vw;
-        }
+    .code-line {
+      animation: code-pulse 4.2s ease-in-out infinite;
+    }
 
-        ul:nth-child(4) {
-          text-transform: lowercase;
-        }
+    .code-line:nth-of-type(2) {
+      animation-delay: .45s;
+    }
 
-        .hi {
-          animation: hi 1.5s linear -0.5s infinite;
-          display: inline-block;
-          transform-origin: 70% 70%;
-        }
+    .code-line:nth-of-type(3) {
+      animation-delay: .9s;
+    }
 
-        @media (prefers-color-scheme: light) {
-          .container {
-            --color-main: #F15BB5;
-            --color-primary: #24b0ef;
-            --color-secondary: #4526f6;
-            --color-tertiary: #f6f645;
-          }
-        }
+    .code-line:nth-of-type(4) {
+      animation-delay: 1.35s;
+    }
 
-        @media (prefers-reduced-motion) {
-          .container {
-            animation: none;
-          }
+    .signal {
+      animation: signal 2.4s ease-in-out infinite;
+    }
 
-          .hi {
-            animation: none;
-          }
-        }
-      </style>
+    .signal.delay-one {
+      animation-delay: .8s;
+    }
 
-      <div class="container">
-        <h1>
-          <a href="https://github.com/lildude">
-            <span><em>Colin Seymour</em></span>
-            <span><em>Colin Seymour</em></span>
-            <span><em>Colin Seymour</em></span>
-          </a>
-        </h1>
-        <section class='items'>
-          <ul>
-            <li>Senior Software Engineer @ GitHub</li>
-          </ul>
-          <ul>
-            <li>Stay-at-home Astronaut</li>
-          </ul>
-          <ul>
-            <li>2:38 Marathon Runner</li>
-          </ul>
-          <ul>
-            <li>@lildude</li>
-          </ul>
-          <ul>
-            <li><span class='hi'>👋</span></li>
-          </ul>
-        </section>
-      </div>
-    </div>
-  </foreignObject>
+    .signal.delay-two {
+      animation-delay: 1.6s;
+    }
+
+    @keyframes float-cyan {
+      from { transform: translate(-16px, -8px) scale(.96); }
+      to { transform: translate(20px, 14px) scale(1.08); }
+    }
+
+    @keyframes float-pink {
+      from { transform: translate(18px, 10px) scale(1.06); }
+      to { transform: translate(-20px, -15px) scale(.94); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes spin-reverse {
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes orbit {
+      0%, 100% { transform: scale(.98); opacity: .72; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+
+    @keyframes blink {
+      0%, 48% { opacity: 1; }
+      49%, 100% { opacity: 0; }
+    }
+
+    @keyframes scan {
+      0% { transform: translateX(-80px); opacity: 0; }
+      12%, 82% { opacity: .42; }
+      100% { transform: translateX(680px); opacity: 0; }
+    }
+
+    @keyframes code-pulse {
+      0%, 100% { opacity: .3; }
+      45%, 60% { opacity: .9; }
+    }
+
+    @keyframes signal {
+      0%, 100% { opacity: .25; r: 2px; }
+      50% { opacity: 1; r: 3.5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .float-cyan,
+      .float-pink,
+      .spin,
+      .spin-reverse,
+      .orbit,
+      .cursor,
+      .scan,
+      .code-line,
+      .signal {
+        animation: none;
+      }
+    }
+  </style>
+
+  <g clip-path="url(#window-clip)">
+    <rect x="7" y="7" width="586" height="286" rx="18" fill="url(#background)"/>
+    <circle class="float-cyan" cx="125" cy="72" r="165" fill="url(#cyan-glow)"/>
+    <circle class="float-pink" cx="530" cy="245" r="180" fill="url(#pink-glow)"/>
+    <rect x="7" y="7" width="586" height="286" fill="url(#grid)"/>
+
+    <rect class="scan" x="-80" y="7" width="80" height="286" fill="url(#line-fade)" opacity=".32"/>
+
+    <rect x="7" y="7" width="586" height="40" fill="#080d1a" fill-opacity=".84"/>
+    <line x1="7" y1="47" x2="593" y2="47" stroke="#a4cafe" stroke-opacity=".13"/>
+
+    <circle cx="27" cy="27" r="5" fill="#ff5f57"/>
+    <circle cx="45" cy="27" r="5" fill="#febc2e"/>
+    <circle cx="63" cy="27" r="5" fill="#28c840"/>
+    <text x="82" y="31" fill="#a9bad8" font-size="11">colin@github:~</text>
+
+    <g transform="translate(481 20)">
+      <circle class="signal" cx="0" cy="7" r="2.5" fill="#5dff9b" filter="url(#soft-glow)"/>
+      <text x="10" y="11" fill="#91a6c9" font-size="9" letter-spacing=".8">BUILDING</text>
+    </g>
+
+    <line x1="371" y1="63" x2="371" y2="254" stroke="#bdd7ff" stroke-opacity=".13"/>
+
+    <text x="38" y="80" fill="#8195b7" font-size="12">
+      <tspan fill="#ff7bd8">const</tspan>
+      <tspan fill="#b9c8e4"> developer = </tspan>
+      <tspan fill="#ffcf70">{</tspan>
+    </text>
+
+    <text class="name" x="36" y="128" fill="url(#accent)" font-size="38">Colin Seymour</text>
+    <text x="39" y="158" fill="#e9f2ff" font-size="17" font-weight="700">@lildude</text>
+    <rect class="cursor" x="130" y="144" width="9" height="17" rx="1.5" fill="#20e3ff" filter="url(#soft-glow)"/>
+
+    <g transform="translate(39 183)">
+      <text x="0" y="0" fill="#8195b7" font-size="11">craft:<tspan fill="#c9d6ec"> ideas </tspan><tspan fill="#ff7bd8">=&gt;</tspan><tspan fill="#5de8ff"> software</tspan><tspan dx="2" fill="#ffcf70">;</tspan></text>
+    </g>
+
+    <g transform="translate(39 202)" fill="none" stroke-linecap="round" stroke-width="4">
+      <line class="code-line" x1="0" y1="0" x2="86" y2="0" stroke="#20e3ff"/>
+      <line class="code-line" x1="98" y1="0" x2="174" y2="0" stroke="#8b5cf6"/>
+      <line class="code-line" x1="0" y1="16" x2="53" y2="16" stroke="#ff4ecd"/>
+      <line class="code-line" x1="65" y1="16" x2="144" y2="16" stroke="#ffb84d"/>
+    </g>
+
+    <g transform="translate(39 239)">
+      <rect width="81" height="22" rx="11" fill="#20e3ff" fill-opacity=".09" stroke="#20e3ff" stroke-opacity=".35"/>
+      <text x="40.5" y="15" fill="#8ceeff" font-size="9" text-anchor="middle">Ruby</text>
+      <rect x="89" width="96" height="22" rx="11" fill="#8b5cf6" fill-opacity=".09" stroke="#a47cff" stroke-opacity=".35"/>
+      <text x="137" y="15" fill="#c0aaff" font-size="9" text-anchor="middle">Go</text>
+      <rect x="193" width="105" height="22" rx="11" fill="#ff4ecd" fill-opacity=".08" stroke="#ff6bd8" stroke-opacity=".34"/>
+      <text x="245.5" y="15" fill="#ff9de5" font-size="9" text-anchor="middle">Python</text>
+    </g>
+
+    <g>
+      <path d="M405 117L437 134M405 189L437 172M535 134L568 112M535 172L568 193" fill="none" stroke="#9bcfff" stroke-opacity=".23"/>
+      <path d="M408 117H423M408 189H423M550 120H568M550 185H568" fill="none" stroke="#9bcfff" stroke-opacity=".13" stroke-dasharray="3 5"/>
+      <circle class="signal" cx="405" cy="117" r="2.5" fill="#20e3ff" filter="url(#soft-glow)"/>
+      <circle class="signal delay-one" cx="405" cy="189" r="2.5" fill="#8b5cf6" filter="url(#soft-glow)"/>
+      <circle class="signal delay-two" cx="568" cy="112" r="2.5" fill="#ff4ecd" filter="url(#soft-glow)"/>
+      <circle class="signal delay-one" cx="568" cy="193" r="2.5" fill="#ffb84d" filter="url(#soft-glow)"/>
+    </g>
+
+    <g class="orbit">
+      <circle cx="486" cy="153" r="68" fill="#0b1224" fill-opacity=".58" stroke="#b5d8ff" stroke-opacity=".1"/>
+      <circle cx="486" cy="153" r="47" fill="#121a30" fill-opacity=".88" stroke="url(#accent)" stroke-opacity=".5"/>
+      <circle cx="486" cy="153" r="40" fill="#080d1b" stroke="#20e3ff" stroke-opacity=".16"/>
+    </g>
+
+    <g class="spin" fill="none" stroke-linecap="round">
+      <circle cx="486" cy="153" r="62" stroke="#20e3ff" stroke-width="2" stroke-dasharray="42 18 6 28 21 75" filter="url(#soft-glow)"/>
+      <circle cx="486" cy="91" r="3.5" fill="#20e3ff" stroke="none" filter="url(#big-glow)"/>
+    </g>
+
+    <g class="spin-reverse" fill="none" stroke-linecap="round">
+      <circle cx="486" cy="153" r="55" stroke="#ff4ecd" stroke-opacity=".75" stroke-width="1.5" stroke-dasharray="8 22 34 56" filter="url(#soft-glow)"/>
+      <circle cx="431" cy="153" r="2.8" fill="#ff4ecd" stroke="none" filter="url(#big-glow)"/>
+    </g>
+
+    <text x="486" y="161" text-anchor="middle" fill="url(#accent)" font-size="25" font-weight="800" filter="url(#soft-glow)">&lt;/&gt;</text>
+    <text x="486" y="232" text-anchor="middle" fill="#8398ba" font-size="9" letter-spacing="2.2">DESIGN / BUILD / SHIP</text>
+
+    <rect x="7" y="273" width="586" height="20" fill="#080d1a" fill-opacity=".78"/>
+    <text x="24" y="287" fill="#6f84a7" font-size="8.5">main*</text>
+    <text x="303" y="287" text-anchor="middle" fill="#6f84a7" font-size="8.5">600 x 300</text>
+    <text x="575" y="287" text-anchor="end" fill="#6f84a7" font-size="8.5">UTF-8</text>
+  </g>
+
+  <rect x="7.5" y="7.5" width="585" height="285" rx="17.5" fill="none" stroke="url(#accent)" stroke-opacity=".54"/>
+  <rect x="10.5" y="10.5" width="579" height="279" rx="15" fill="none" stroke="#d7ecff" stroke-opacity=".08"/>
 </svg>
