@@ -216,11 +216,7 @@
     <rect class="cursor" x="130" y="144" width="9" height="17" rx="1.5" fill="#20e3ff" filter="url(#soft-glow)"/>
 
     <g transform="translate(39 183)">
-      <text x="0" y="0" fill="#8195b7" font-size="11">craft:</text>
-      <text x="44" y="0" fill="#c9d6ec" font-size="11">ideas</text>
-      <text x="78" y="0" fill="#ff7bd8" font-size="11"> =&gt; </text>
-      <text x="107" y="0" fill="#5de8ff" font-size="11">software</text>
-      <text x="158" y="0" fill="#ffcf70" font-size="11">;</text>
+      <text x="0" y="0" fill="#8195b7" font-size="11">craft:<tspan fill="#c9d6ec"> ideas </tspan><tspan fill="#ff7bd8">=&gt;</tspan><tspan fill="#5de8ff"> software</tspan><tspan dx="2" fill="#ffcf70">;</tspan></text>
     </g>
 
     <g transform="translate(39 202)" fill="none" stroke-linecap="round" stroke-width="4">
