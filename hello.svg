@@ -228,11 +228,11 @@
 
     <g transform="translate(39 239)">
       <rect width="81" height="22" rx="11" fill="#20e3ff" fill-opacity=".09" stroke="#20e3ff" stroke-opacity=".35"/>
-      <text x="13" y="15" fill="#8ceeff" font-size="9">ship()</text>
+      <text x="40.5" y="15" fill="#8ceeff" font-size="9" text-anchor="middle">ship()</text>
       <rect x="89" width="96" height="22" rx="11" fill="#8b5cf6" fill-opacity=".09" stroke="#a47cff" stroke-opacity=".35"/>
-      <text x="102" y="15" fill="#c0aaff" font-size="9">git push</text>
+      <text x="137" y="15" fill="#c0aaff" font-size="9" text-anchor="middle">git push</text>
       <rect x="193" width="105" height="22" rx="11" fill="#ff4ecd" fill-opacity=".08" stroke="#ff6bd8" stroke-opacity=".34"/>
-      <text x="206" y="15" fill="#ff9de5" font-size="9">&lt;build/&gt;</text>
+      <text x="245.5" y="15" fill="#ff9de5" font-size="9" text-anchor="middle">&lt;build/&gt;</text>
     </g>
 
     <g>
